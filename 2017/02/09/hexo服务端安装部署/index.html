@@ -1,0 +1,527 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>hexo服务端安装部署 | AACHINA-BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="刘铭">
+    
+
+    
+    <meta name="description" content="环境简介ubuntu14.04 + apache2 + php5 + hexo + git
+安装apache2、php51apt-get install -y apache2 php5
+更改apache账户为可登录账户，并为其设置密码1234vim /etc/passwd修改内容如下：www-data:x:33:33:www-data:/home/www-data:/bin/bashmkdir /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo服务端安装部署">
+<meta property="og:url" content="https://lmrjgcs.github.io/2017/02/09/hexo服务端安装部署/index.html">
+<meta property="og:site_name" content="AACHINA-BLOG">
+<meta property="og:description" content="环境简介ubuntu14.04 + apache2 + php5 + hexo + git
+安装apache2、php51apt-get install -y apache2 php5
+更改apache账户为可登录账户，并为其设置密码1234vim /etc/passwd修改内容如下：www-data:x:33:33:www-data:/home/www-data:/bin/bashmkdir /">
+<meta property="og:image" content="https://lmrjgcs.github.io/2017/02/09/hexo服务端安装部署/QQ截图20170116143613.png">
+<meta property="og:image" content="https://lmrjgcs.github.io/2017/02/09/hexo服务端安装部署/QQ图片20170116143810.png">
+<meta property="og:updated_time" content="2017-02-23T08:18:46.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo服务端安装部署">
+<meta name="twitter:description" content="环境简介ubuntu14.04 + apache2 + php5 + hexo + git
+安装apache2、php51apt-get install -y apache2 php5
+更改apache账户为可登录账户，并为其设置密码1234vim /etc/passwd修改内容如下：www-data:x:33:33:www-data:/home/www-data:/bin/bashmkdir /">
+<meta name="twitter:image" content="https://lmrjgcs.github.io/2017/02/09/hexo服务端安装部署/QQ截图20170116143613.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="AACHINA-BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="AACHINA-BLOG" title="AACHINA-BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="AACHINA-BLOG">AACHINA-BLOG</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<div></div>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/09/hexo服务端安装部署/" title="hexo服务端安装部署" itemprop="url">hexo服务端安装部署</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="刘铭" target="_blank" itemprop="author">刘铭</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-09T02:14:37.000Z" itemprop="datePublished"> 发表于 2017-02-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境简介"><span class="toc-number">1.</span> <span class="toc-text">环境简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装apache2、php5"><span class="toc-number">2.</span> <span class="toc-text">安装apache2、php5</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改apache账户为可登录账户，并为其设置密码"><span class="toc-number">3.</span> <span class="toc-text">更改apache账户为可登录账户，并为其设置密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitlab上创建source仓库"><span class="toc-number">4.</span> <span class="toc-text">gitlab上创建source仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置ssh秘钥"><span class="toc-number">5.</span> <span class="toc-text">配置ssh秘钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo安装"><span class="toc-number">6.</span> <span class="toc-text">hexo安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载脚本并执行"><span class="toc-number">6.1.</span> <span class="toc-text">下载脚本并执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-number">6.2.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-number">6.3.</span> <span class="toc-text">安装hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建立博客站点"><span class="toc-number">7.</span> <span class="toc-text">建立博客站点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置主题"><span class="toc-number">8.</span> <span class="toc-text">配置主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主题下载"><span class="toc-number">8.1.</span> <span class="toc-text">主题下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改主题"><span class="toc-number">8.2.</span> <span class="toc-text">修改主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#所写文章支持指定作者"><span class="toc-number">8.2.1.</span> <span class="toc-text">所写文章支持指定作者</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置主题配置文件"><span class="toc-number">9.</span> <span class="toc-text">配置主题配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置站点配置文件"><span class="toc-number">10.</span> <span class="toc-text">配置站点配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitlab的webhook自动化部署hexo"><span class="toc-number">11.</span> <span class="toc-text">gitlab的webhook自动化部署hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置git仓库"><span class="toc-number">12.</span> <span class="toc-text">配置git仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置php"><span class="toc-number">13.</span> <span class="toc-text">配置php</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置gitlab-webhook选项："><span class="toc-number">14.</span> <span class="toc-text">配置gitlab webhook选项：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-server后台启动配置"><span class="toc-number">15.</span> <span class="toc-text">hexo server后台启动配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参照链接："><span class="toc-number">16.</span> <span class="toc-text">参照链接：</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="环境简介"><a href="#环境简介" class="headerlink" title="环境简介"></a>环境简介</h1><p>ubuntu14.04 + apache2 + php5 + hexo + git</p>
+<h1 id="安装apache2、php5"><a href="#安装apache2、php5" class="headerlink" title="安装apache2、php5"></a>安装apache2、php5</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install -y apache2 php5</div></pre></td></tr></table></figure>
+<h1 id="更改apache账户为可登录账户，并为其设置密码"><a href="#更改apache账户为可登录账户，并为其设置密码" class="headerlink" title="更改apache账户为可登录账户，并为其设置密码"></a>更改apache账户为可登录账户，并为其设置密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vim /etc/passwd</div><div class="line">修改内容如下：</div><div class="line">www-data:x:33:33:www-data:/home/www-data:/bin/bash</div><div class="line">mkdir /home/www-data 创建用户根目录</div></pre></td></tr></table></figure>
+<h1 id="gitlab上创建source仓库"><a href="#gitlab上创建source仓库" class="headerlink" title="gitlab上创建source仓库"></a>gitlab上创建source仓库</h1><h1 id="配置ssh秘钥"><a href="#配置ssh秘钥" class="headerlink" title="配置ssh秘钥"></a>配置ssh秘钥</h1><p>进入www-data用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;test&quot; 创建sshkye</div></pre></td></tr></table></figure></p>
+<p>把生成pubkey内容复制到gitlab上项目里的deploy keys里或用户ssh keys里</p>
+<h1 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h1><h2 id="下载脚本并执行"><a href="#下载脚本并执行" class="headerlink" title="下载脚本并执行"></a>下载脚本并执行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div></pre></td></tr></table></figure>
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get install -y nodejs</div><div class="line">apt-get install -y build-essential</div></pre></td></tr></table></figure>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo -v #看到版本信息，则证明安装没问题</div></pre></td></tr></table></figure>
+<h1 id="建立博客站点"><a href="#建立博客站点" class="headerlink" title="建立博客站点"></a>建立博客站点</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/www-data/</div><div class="line">hexo init blog-name</div></pre></td></tr></table></figure>
+<h1 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h1><h2 id="主题下载"><a href="#主题下载" class="headerlink" title="主题下载"></a>主题下载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd blog-directory</div><div class="line">git clone https://github.com/wuchong/jacman.git themes/jacman</div></pre></td></tr></table></figure>
+<h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p>让主题支持本地搜索，见让jacman主题支持本地搜索这篇博客</p>
+<h3 id="所写文章支持指定作者"><a href="#所写文章支持指定作者" class="headerlink" title="所写文章支持指定作者"></a>所写文章支持指定作者</h3><ul>
+<li><p>注释掉站点配置文件_config.yml中的作者选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#author:</div></pre></td></tr></table></figure>
+</li>
+<li><p>更改脚本文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim themes/jacman1/layout/_partial/post/header.ejs</div><div class="line">//&lt;a href=&quot;&lt;%= config.root %&gt;about&quot; title=&quot;&lt;%= config.author %&gt;&quot; target=&quot;_blank&quot; itemprop=&quot;author&quot;&gt;&lt;%= config.author %&gt;&lt;/a&gt;  #注释掉此行</div><div class="line">&lt;a&gt;&lt;%= item.author %&gt;&lt;/a&gt; #加入这行</div></pre></td></tr></table></figure>
+</li>
+<li><p>写文章抬头加入author参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">author:</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="配置主题配置文件"><a href="#配置主题配置文件" class="headerlink" title="配置主题配置文件"></a>配置主题配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /themes/jacman/_config.yml</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  Home: /</div><div class="line">  Archives: /archives</div><div class="line">  About: /about</div><div class="line">更改为如下：</div><div class="line">menu:</div><div class="line">  主页: /</div><div class="line">  归档: /archives</div><div class="line">  关于: /about</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#author_img: #注释掉</div><div class="line">index:</div><div class="line">  expand: false   #更改false，让主页文章折叠起来</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">修改链接</div><div class="line">links:</div><div class="line">  github: https://github.com/</div></pre></td></tr></table></figure>
+<h1 id="配置站点配置文件"><a href="#配置站点配置文件" class="headerlink" title="配置站点配置文件"></a>配置站点配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vim _config.yml</div><div class="line">title: AACHINA-BLOG  #站点名称</div><div class="line">language: zh-CN  #配置站点支持中文</div><div class="line">url: http://ip地址:4000  #站点路径</div><div class="line">post_asset_folder: true  #改为true，让hexo使用本地图片，需要安装插件：npm install hexo-asset-image --save</div><div class="line">theme: jacman 	#配置使用哪个主题</div></pre></td></tr></table></figure>
+<h1 id="gitlab的webhook自动化部署hexo"><a href="#gitlab的webhook自动化部署hexo" class="headerlink" title="gitlab的webhook自动化部署hexo"></a>gitlab的webhook自动化部署hexo</h1><p>客户端有push动作，hexo服务端自动触发pull，下载更新</p>
+<h1 id="配置git仓库"><a href="#配置git仓库" class="headerlink" title="配置git仓库"></a>配置git仓库</h1><p>进入www-data用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install -y git #安装git</div><div class="line">cd blog-directory/source</div><div class="line">git init #初始化git可以管理的仓库</div><div class="line">在gitlab上创建名为source的仓库</div><div class="line">git remote add origin git@gitlab地址:aachina/source.git #关联远程仓库</div><div class="line">git push -u origin master #把本地master分支推送到远端，并关联远端master分支</div></pre></td></tr></table></figure></p>
+<h1 id="配置php"><a href="#配置php" class="headerlink" title="配置php"></a>配置php</h1><p>进入root账户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cd /var/www/html</div><div class="line">vim test.php</div><div class="line">加入如下内容：</div><div class="line">&lt;?php</div><div class="line">$www_folder = &quot;/home/www-data/aachina-blog/source&quot; ;</div><div class="line">//git仓库地址</div><div class="line">$git_repo = &quot;git@gitlab地址:aachina/source.git&quot; ;</div><div class="line">//执行指令 </div><div class="line">echo shell_exec(&quot; cd $www_folder &amp;&amp; git pull $git_repo 2&gt;&amp;1 &quot;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="配置gitlab-webhook选项："><a href="#配置gitlab-webhook选项：" class="headerlink" title="配置gitlab webhook选项："></a>配置gitlab webhook选项：</h1><p><img src="/2017/02/09/hexo服务端安装部署/QQ截图20170116143613.png" alt="webhook"><br>配置路径及勾上push events<br><img src="/2017/02/09/hexo服务端安装部署/QQ图片20170116143810.png" alt="webhook1"></p>
+<h1 id="hexo-server后台启动配置"><a href="#hexo-server后台启动配置" class="headerlink" title="hexo server后台启动配置"></a>hexo server后台启动配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vim /etc/rc.local</div><div class="line">加入：</div><div class="line">cd /home/www-data/aachina-blog &amp;&amp; nohup hexo s &amp;</div><div class="line">保存重启</div></pre></td></tr></table></figure>
+<h1 id="参照链接："><a href="#参照链接：" class="headerlink" title="参照链接："></a>参照链接：</h1><ul>
+<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">hexo中文官网</a></li>
+<li><a href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/" target="_blank" rel="external">jacman主题</a></li>
+<li><a href="http://www.tuicool.com/articles/umEBVfI" target="_blank" rel="external">hexo无法使用本地图片</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/运维/">运维</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://lmrjgcs.github.io/2017/02/09/hexo服务端安装部署/" data-title="hexo服务端安装部署 | AACHINA-BLOG" data-tsina="undefined" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/02/09/让jacman主题支持本地搜索/" title="让jacman主题支持本地搜索">
+  <strong>上一篇：</strong><br/>
+  <span>
+  让jacman主题支持本地搜索</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境简介"><span class="toc-number">1.</span> <span class="toc-text">环境简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装apache2、php5"><span class="toc-number">2.</span> <span class="toc-text">安装apache2、php5</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改apache账户为可登录账户，并为其设置密码"><span class="toc-number">3.</span> <span class="toc-text">更改apache账户为可登录账户，并为其设置密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitlab上创建source仓库"><span class="toc-number">4.</span> <span class="toc-text">gitlab上创建source仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置ssh秘钥"><span class="toc-number">5.</span> <span class="toc-text">配置ssh秘钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo安装"><span class="toc-number">6.</span> <span class="toc-text">hexo安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载脚本并执行"><span class="toc-number">6.1.</span> <span class="toc-text">下载脚本并执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-number">6.2.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-number">6.3.</span> <span class="toc-text">安装hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建立博客站点"><span class="toc-number">7.</span> <span class="toc-text">建立博客站点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置主题"><span class="toc-number">8.</span> <span class="toc-text">配置主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主题下载"><span class="toc-number">8.1.</span> <span class="toc-text">主题下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改主题"><span class="toc-number">8.2.</span> <span class="toc-text">修改主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#所写文章支持指定作者"><span class="toc-number">8.2.1.</span> <span class="toc-text">所写文章支持指定作者</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置主题配置文件"><span class="toc-number">9.</span> <span class="toc-text">配置主题配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置站点配置文件"><span class="toc-number">10.</span> <span class="toc-text">配置站点配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitlab的webhook自动化部署hexo"><span class="toc-number">11.</span> <span class="toc-text">gitlab的webhook自动化部署hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置git仓库"><span class="toc-number">12.</span> <span class="toc-text">配置git仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置php"><span class="toc-number">13.</span> <span class="toc-text">配置php</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置gitlab-webhook选项："><span class="toc-number">14.</span> <span class="toc-text">配置gitlab webhook选项：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-server后台启动配置"><span class="toc-number">15.</span> <span class="toc-text">hexo server后台启动配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参照链接："><span class="toc-number">16.</span> <span class="toc-text">参照链接：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div id="site_search">
+   <div class="form-group">
+   <label>搜索</label>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oracle/" title="oracle">oracle<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://192.168.5.112" target="_blank" title="gitlab">gitlab</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://hao123.aachina.net" target="_blank" title="中联车盟网址导航">中联车盟网址导航</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=undefined&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="刘铭">刘铭</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<script src="/js/search.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>

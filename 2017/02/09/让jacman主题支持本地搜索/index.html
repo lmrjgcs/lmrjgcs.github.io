@@ -1,0 +1,496 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>让jacman主题支持本地搜索 | AACHINA-BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="刘铭">
+    
+
+    
+    <meta name="description" content="修改主题配置文件_config.yml在widgets:下加入1- search
+source/js/search.js下创建searchFunc函数内容如下1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让jacman主题支持本地搜索">
+<meta property="og:url" content="https://lmrjgcs.github.io/2017/02/09/让jacman主题支持本地搜索/index.html">
+<meta property="og:site_name" content="AACHINA-BLOG">
+<meta property="og:description" content="修改主题配置文件_config.yml在widgets:下加入1- search
+source/js/search.js下创建searchFunc函数内容如下1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+<meta property="og:updated_time" content="2017-02-23T07:45:25.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让jacman主题支持本地搜索">
+<meta name="twitter:description" content="修改主题配置文件_config.yml在widgets:下加入1- search
+source/js/search.js下创建searchFunc函数内容如下1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+
+    
+    <link rel="alternative" href="/atom.xml" title="AACHINA-BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="AACHINA-BLOG" title="AACHINA-BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="AACHINA-BLOG">AACHINA-BLOG</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<div></div>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/09/让jacman主题支持本地搜索/" title="让jacman主题支持本地搜索" itemprop="url">让jacman主题支持本地搜索</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="刘铭" target="_blank" itemprop="author">刘铭</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-09T03:44:55.000Z" itemprop="datePublished"> 发表于 2017-02-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#修改主题配置文件-config-yml"><span class="toc-number">1.</span> <span class="toc-text">修改主题配置文件_config.yml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#source-js-search-js下创建searchFunc函数"><span class="toc-number">2.</span> <span class="toc-text">source/js/search.js下创建searchFunc函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在控件目录加入search-ejs"><span class="toc-number">3.</span> <span class="toc-text">在控件目录加入search.ejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改layout-partial目录下的header-ejs"><span class="toc-number">4.</span> <span class="toc-text">修改layout/_partial目录下的header.ejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改layout-partial-after-footer-ejs"><span class="toc-number">5.</span> <span class="toc-text">修改layout/_partial/after_footer.ejs</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="修改主题配置文件-config-yml"><a href="#修改主题配置文件-config-yml" class="headerlink" title="修改主题配置文件_config.yml"></a>修改主题配置文件_config.yml</h1><p>在widgets:下加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- search</div></pre></td></tr></table></figure></p>
+<h1 id="source-js-search-js下创建searchFunc函数"><a href="#source-js-search-js下创建searchFunc函数" class="headerlink" title="source/js/search.js下创建searchFunc函数"></a>source/js/search.js下创建searchFunc函数</h1><p>内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line">// A local search script with the help of [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)</div><div class="line">// Copyright (C) 2015 </div><div class="line">// Joseph Pan &lt;http://github.com/wzpan&gt;</div><div class="line">// Shuhao Mao &lt;http://github.com/maoshuhao&gt;</div><div class="line">// This library is free software; you can redistribute it and/or modify</div><div class="line">// it under the terms of the GNU Lesser General Public License as</div><div class="line">// published by the Free Software Foundation; either version 2.1 of the</div><div class="line">// License, or (at your option) any later version.</div><div class="line">// </div><div class="line">// This library is distributed in the hope that it will be useful, but</div><div class="line">// WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</div><div class="line">// Lesser General Public License for more details.</div><div class="line">// </div><div class="line">// You should have received a copy of the GNU Lesser General Public</div><div class="line">// License along with this library; if not, write to the Free Software</div><div class="line">// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA</div><div class="line">// 02110-1301 USA</div><div class="line">// </div><div class="line"></div><div class="line">var searchFunc = function(path, search_id, content_id) &#123;</div><div class="line">    &apos;use strict&apos;;</div><div class="line">    $.ajax(&#123;</div><div class="line">        url: path,</div><div class="line">        dataType: &quot;xml&quot;,</div><div class="line">        success: function( xmlResponse ) &#123;</div><div class="line">            // get the contents from search data</div><div class="line">            var datas = $( &quot;entry&quot;, xmlResponse ).map(function() &#123;</div><div class="line">                return &#123;</div><div class="line">                    title: $( &quot;title&quot;, this ).text(),</div><div class="line">                    content: $(&quot;content&quot;,this).text(),</div><div class="line">                    url: $( &quot;url&quot; , this).text()</div><div class="line">                &#125;;</div><div class="line">            &#125;).get();</div><div class="line"></div><div class="line">            var $input = document.getElementById(search_id);</div><div class="line">            var $resultContent = document.getElementById(content_id);</div><div class="line"></div><div class="line">            $input.addEventListener(&apos;input&apos;, function()&#123;</div><div class="line">                var str=&apos;&lt;ul class=\&quot;search-result-list\&quot;&gt;&apos;;                </div><div class="line">                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);</div><div class="line">                $resultContent.innerHTML = &quot;&quot;;</div><div class="line">                if (this.value.trim().length &lt;= 0) &#123;</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">                // perform local searching</div><div class="line">                datas.forEach(function(data) &#123;</div><div class="line">                    var isMatch = true;</div><div class="line">                    var content_index = [];                                                       </div><div class="line">                    if (!data.title || data.title.trim() === &apos;&apos;) &#123;</div><div class="line">                        data.title = &quot;Untitled&quot;;</div><div class="line">                    &#125;</div><div class="line">                    var data_title = data.title.trim().toLowerCase();     </div><div class="line">                    var data_content = data.content.trim().replace(/&lt;[^&gt;]+&gt;/g,&quot;&quot;).toLowerCase();</div><div class="line">                    var data_url = data.url;</div><div class="line">                    var index_title = -1;</div><div class="line">                    var index_content = -1;</div><div class="line">                    var first_occur = -1;</div><div class="line">                    // only match artiles with not empty contents</div><div class="line">                    if (data_content !== &apos;&apos;) &#123;</div><div class="line">                        keywords.forEach(function(keyword, i) &#123;</div><div class="line">                            index_title = data_title.indexOf(keyword);</div><div class="line">                            index_content = data_content.indexOf(keyword);</div><div class="line"></div><div class="line">                            if( index_title &lt; 0 &amp;&amp; index_content &lt; 0 )&#123;</div><div class="line">                                isMatch = false;</div><div class="line">                            &#125; else &#123;</div><div class="line">                                if (index_content &lt; 0) &#123;</div><div class="line">                                    index_content = 0;</div><div class="line">                                &#125;</div><div class="line">                                if (i == 0) &#123;</div><div class="line">                                    first_occur = index_content;</div><div class="line">                                &#125;</div><div class="line">                                // content_index.push(&#123;index_content:index_content, keyword_len:keyword_len&#125;);</div><div class="line">                            &#125;</div><div class="line">                        &#125;);</div><div class="line">                    &#125; else &#123;</div><div class="line">                        isMatch = false;</div><div class="line">                    &#125;</div><div class="line">                    // show search results</div><div class="line">                    if (isMatch) &#123;</div><div class="line">                        str += &quot;&lt;li&gt;&lt;a style=&apos;color:red;font-weight:bold&apos; href=&apos;&quot;+ data_url +&quot;&apos; class=&apos;search-result-title&apos;&gt;&quot;+ data_title +&quot;&lt;/a&gt;&quot;;</div><div class="line">                        var content = data.content.trim().replace(/&lt;[^&gt;]+&gt;/g,&quot;&quot;);</div><div class="line">                        if (first_occur &gt;= 0) &#123;</div><div class="line">                            // cut out 100 characters</div><div class="line">                            var start = first_occur - 20;</div><div class="line">                            var end = first_occur + 80;</div><div class="line"></div><div class="line">                            if(start &lt; 0)&#123;</div><div class="line">                                start = 0;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            if(start == 0)&#123;</div><div class="line">                                end = 100;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            if(end &gt; content.length)&#123;</div><div class="line">                                end = content.length;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            var match_content = content.substr(start, end); </div><div class="line"></div><div class="line">                            // highlight all keywords</div><div class="line">                            keywords.forEach(function(keyword)&#123;</div><div class="line">                                var regS = new RegExp(keyword, &quot;gi&quot;);</div><div class="line">                                match_content = match_content.replace(regS, &quot;&lt;em class=\&quot;search-keyword\&quot;&gt;&quot;+keyword+&quot;&lt;/em&gt;&quot;);</div><div class="line">                            &#125;);</div><div class="line">                            </div><div class="line">                            str += &quot;&lt;p class=\&quot;search-result\&quot;&gt;&quot; + match_content +&quot;...&lt;/p&gt;&quot;</div><div class="line">                        &#125;</div><div class="line">                        str += &quot;&lt;/li&gt;&quot;;</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">                str += &quot;&lt;/ul&gt;&quot;;</div><div class="line">                $resultContent.innerHTML = str;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="在控件目录加入search-ejs"><a href="#在控件目录加入search-ejs" class="headerlink" title="在控件目录加入search.ejs"></a>在控件目录加入search.ejs</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">jacman\layout\_widget目录下创建search.ejs</div><div class="line">内容如下：</div><div class="line">&lt;% if (theme.swiftype_key) &#123; %&gt;</div><div class="line">  &lt;div class=&quot;form-group has-success has-feedback&quot; id=&quot;site_search&quot;&gt;</div><div class="line">    &lt;form class=&quot;site-search-form&quot;&gt;</div><div class="line">        &lt;input type=&quot;text&quot; id=&quot;st-search-input&quot; name=&quot;q&quot; results=&quot;0&quot; placeholder=&quot;&lt;%= __(&apos;search&apos;) %&gt;&quot; class=&quot;st-search-input st-default-search-input form-control&quot; /&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">  &lt;/div&gt;  </div><div class="line">&lt;% &#125; else &#123; %&gt;</div><div class="line">  &lt;div id=&quot;site_search&quot;&gt;</div><div class="line">   &lt;div class=&quot;form-group&quot;&gt;</div><div class="line">   &lt;label&gt;搜索&lt;/label&gt;</div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;local-search-input&quot; name=&quot;q&quot; results=&quot;0&quot; placeholder=&quot;&lt;%= __(&apos;search&apos;) %&gt;&quot; class=&quot;st-search-input st-default-search-input form-control&quot;/&gt;</div><div class="line">   &lt;/div&gt;  </div><div class="line">  &lt;div id=&quot;local-search-result&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<h1 id="修改layout-partial目录下的header-ejs"><a href="#修改layout-partial目录下的header-ejs" class="headerlink" title="修改layout/_partial目录下的header.ejs"></a>修改layout/_partial目录下的header.ejs</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">删除&lt;li&gt;&lt;/li&gt;里的内容，保留&lt;li&gt;</div></pre></td></tr></table></figure>
+<h1 id="修改layout-partial-after-footer-ejs"><a href="#修改layout-partial-after-footer-ejs" class="headerlink" title="修改layout/_partial/after_footer.ejs"></a>修改layout/_partial/after_footer.ejs</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">加入</div><div class="line">&lt;script src=&quot;&lt;%- config.root %&gt;js/search.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;% if (config.search) &#123; %&gt;</div><div class="line">   &lt;script type=&quot;text/javascript&quot;&gt;      </div><div class="line">     var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</div><div class="line">	 if (search_path.length == 0) &#123;</div><div class="line">	 	search_path = &quot;search.xml&quot;;</div><div class="line">	 &#125;</div><div class="line">	 var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</div><div class="line">     searchFunc(path, &apos;local-search-input&apos;, &apos;local-search-result&apos;);</div><div class="line">   &lt;/script&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/运维/">运维</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://lmrjgcs.github.io/2017/02/09/让jacman主题支持本地搜索/" data-title="让jacman主题支持本地搜索 | AACHINA-BLOG" data-tsina="undefined" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/02/10/hexo使用说明/" title="hexo使用说明">
+  <strong>上一篇：</strong><br/>
+  <span>
+  hexo使用说明</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/02/09/hexo服务端安装部署/"  title="hexo服务端安装部署">
+ <strong>下一篇：</strong><br/> 
+ <span>hexo服务端安装部署
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#修改主题配置文件-config-yml"><span class="toc-number">1.</span> <span class="toc-text">修改主题配置文件_config.yml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#source-js-search-js下创建searchFunc函数"><span class="toc-number">2.</span> <span class="toc-text">source/js/search.js下创建searchFunc函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在控件目录加入search-ejs"><span class="toc-number">3.</span> <span class="toc-text">在控件目录加入search.ejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改layout-partial目录下的header-ejs"><span class="toc-number">4.</span> <span class="toc-text">修改layout/_partial目录下的header.ejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改layout-partial-after-footer-ejs"><span class="toc-number">5.</span> <span class="toc-text">修改layout/_partial/after_footer.ejs</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div id="site_search">
+   <div class="form-group">
+   <label>搜索</label>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oracle/" title="oracle">oracle<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://192.168.5.112" target="_blank" title="gitlab">gitlab</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://hao123.aachina.net" target="_blank" title="中联车盟网址导航">中联车盟网址导航</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=undefined&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="刘铭">刘铭</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<script src="/js/search.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>
